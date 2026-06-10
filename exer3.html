@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicíos</title>
+
+    <script>
+        window.onload = inicio;
+        let exercicios = [["leg raises", 6], ["leg circles", 6], ["knee-ins", 10], ["knee-ins & Twist", 10]];
+        let listaexerciciosFeito = [];
+
+        function inicio() {
+            let btnAdiciona = document.getElementById('btnAdiciona');
+            btnAdiciona.addEventListener('click', fazerSerie);
+
+            atualizar();
+        }
+
+        function atualizar() {
+            let campoEx = document.getElementById('listaFazer');
+            campoEx.innerHTML = '';
+
+            let campoExF = document.getElementById('listaFeito');
+            campoExF.innerHTML = '';
+
+            for(let i = 0; i < exercicios.length; i++) {
+                if(exercicios[i][1] !== 0) {
+                    campoEx.innerHTML += `<li>${exercicios[i][1]} series de ${exercicios[i][0]}</l1><br>`;
+                }
+            }
+
+        }
+
+        function fazerSerie() {
+            let campoEx = document.getElementById('item');
+            let indiceEx = Number(item.value) - 1;
+
+            if(indiceEx >= exercicios.length || indiceEx < 0) {
+                console.log('Índice inválido');
+                return;
+            } 
+
+            exercicios[indiceEx][1] = exercicios[indiceEx][1] - 1;
+
+            let exercicioFeito = exercicios.splice(indiceEx, 1);
+
+            if(exercicios[indiceEx][1] === 0) {
+                let listaExercicio = exercicios.splice(indiceComprado, 1);
+                listaexerciciosFeito.push(listaExercicio[0]);
+            } 
+
+            atualizar();
+
+            item.value = '';
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+    <h2>Exercicios a fazer:</h2>
+    <ol id="listaFazer"></ol>
+
+    <label for="">Qual voce fez:</label>
+    <input type="text" id="item"><br>
+    <button id="btnAdiciona">Adicionar</button>
+
+    <ol id="listaFeito"></ol>
+    
+    
+</body>
+</html>
